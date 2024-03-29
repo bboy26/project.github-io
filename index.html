@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Electronic Medical Record</title>
+	<style>
+		/* CSS styles for the form */
+		form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-top: 50px;
+		}
+
+		input {
+			margin-bottom: 10px;
+			padding: 10px;
+			border-radius: 5px;
+			border: none;
+			box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
+		}
+
+		input[type="submit"] {
+			background-color: #4CAF50;
+			color: white;
+			cursor: pointer;
+		}
+
+		/* CSS styles for the patient data table */
+		table {
+			margin-top: 50px;
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		th, td {
+			text-align: left;
+			padding: 8px;
+		}
+
+		th {
+			background-color: #4CAF50;
+			color: white;
+		}
+	</style>
+</head>
+<body>
+	<form id="patient-form">
+		<label for="name">Name:</label>
+		<input type="text" id="name" name="name">
+
+		<label for="address">Address:</label>
+		<input type="text" id="address" name="address">
+
+		<label for="diagnosis">Diagnosis:</label>
+		<input type="text" id="diagnosis" name="diagnosis">
+
+		<label for="doctor-name">Doctor Name:</label>
+		<input type="text" id="doctor-name" name="doctor-name">
+
+		<label for="date">Date:</label>
+		<input type="date" id="date" name="date">
+
+		<input type="submit" value="Submit">
+	</form>
+
+	<table id="patient-data">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Address</th>
+				<th>Diagnosis</th>
+				<th>Doctor Name</th>
+				<th>Date</th>
+				<th>Download</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- patient data will be dynamically added here using JavaScript -->
+		</tbody>
+	</table>
+
+	<script>
+		const form = document.getElementById("patient-form");
+		const patientData = document.getElementById("patient-data");
+
+		form.addEventListener("submit", (event) => {
+			event.preventDefault();
+
+			// retrieve form data
+			const name = document.getElementById("name").value;
+			const address = document.getElementById("address").value;
+			const diagnosis = document.getElementById("diagnosis").value;
+			const doctorName = document.getElementById("doctor-name").value;
+			const date = document.getElementById("date").value;
+			
+
+			// create new row for patient data
+			const row = patientData.insertRow();
+			const nameCell = row.insertCell();
+			const addressCell = row.insertCell();
+			const diagnosisCell = row.insertCell();
+			const doctorNameCell = row.insertCell();
+			const dateCell = row.insertCell();
+
+			// set cell values
+			nameCell.innerHTML = name;
+			addressCell.innerHTML = address;
+			diagnosisCell.innerHTML = diagnosis;
+			doctorNameCell.innerHTML = doctorName;
+			dateCell.innerHTML = date;
+
+			// reset form
+			form.reset();
+		});
+	</script>
+</body>
+</html>
